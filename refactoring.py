@@ -1,6 +1,7 @@
 from snake import *
 import ast
 import __builtin__
+import pkgutil
 
 
 class NodeVisitorWithParent(ast.NodeVisitor):
@@ -141,3 +142,9 @@ def refactor_into_function(sel):
     new_call = indent(new_call, leading_spaces)
 
     return new_def + "\n" + new_call + "\n"
+
+
+STDLIB = set([name for _, name, _ in pkgutil.iter_modules()])
+
+def organize_imports():
+    pass
