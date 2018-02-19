@@ -1,4 +1,6 @@
 from snake import *
+from . import helpers
+
 
 def comment_lines(sel):
     lines = sel.split("\n")
@@ -69,6 +71,24 @@ def toggle_object_dict():
     else:
         word = delete_word()
         keys('Xi["' + word + '"]')
+
+
+def try_except(sel):
+    first_line = sel.split("\n")[0]
+    count = 0
+    for char in first_line:
+        if char == " ":
+            count += 1
+        else:
+            break
+
+    spaces = " " * count
+    repl = spaces + "try:\n"
+    sel = helpers.indent(sel.rstrip("\n"), count) + "\n"
+    repl += sel
+    repl += spaces + "except Exception as e:\n"
+    repl += (spaces * 2) + "import pdb; pdb.set_trace()\n"
+    return repl
 
 
 def toggle_quotes():

@@ -1,7 +1,11 @@
+from __future__ import absolute_import
+
 from snake import *
 import ast
 import __builtin__
 import pkgutil
+
+from . import helpers
 
 
 class NodeVisitorWithParent(ast.NodeVisitor):
@@ -129,8 +133,6 @@ def refactor_code(sel, start, end, all_src):
     fn_call = build_call_function(fn_name, fn_args)
     return fn_str, fn_call
 
-def indent(block, amount):
-    return "\n".join([(" " * amount) + line for line in block.split("\n")])
 
 def refactor_into_function(sel):
     whole_file = get_current_buffer_contents()
