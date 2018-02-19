@@ -82,12 +82,16 @@ def try_except(sel):
         else:
             break
 
-    spaces = " " * count
-    repl = spaces + "try:\n"
-    sel = helpers.indent(sel.rstrip("\n"), count) + "\n"
+    one_indent_num = 4
+    space = " "
+    one_indent = space * one_indent_num
+
+    existing_spaces = space * count
+    repl = existing_spaces + "try:\n"
+    sel = helpers.indent(sel.rstrip("\n"), one_indent_num) + "\n"
     repl += sel
-    repl += spaces + "except Exception as e:\n"
-    repl += (spaces * 2) + "import pdb; pdb.set_trace()\n"
+    repl += existing_spaces + "except Exception as e:\n"
+    repl += existing_spaces + one_indent + "import pdb; pdb.set_trace()\n"
     return repl
 
 
