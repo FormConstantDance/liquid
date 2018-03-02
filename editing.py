@@ -92,6 +92,7 @@ def try_except(sel):
     repl += sel
     repl += existing_spaces + "except Exception as e:\n"
     repl += existing_spaces + one_indent + "import pdb; pdb.set_trace()\n"
+    repl += existing_spaces + one_indent + "pass\n"
     return repl
 
 
